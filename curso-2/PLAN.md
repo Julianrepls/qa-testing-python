@@ -27,4 +27,4 @@ confirmar que entendiste. 30 min/día.
 - **Módulo 11**: Testing de rendimiento (Locust) + cierre y siguientes pasos.
 
 ---
-Progreso: [x] M1 · [x] M2 · [x] M3 · [x] M4 · [x] M5 · [x] M6 · [x] M7 · [x] M8 · [x] M9 · [ ] M10 · [ ] M11
+Progreso: [x] M1 · [x] M2 · [x] M3 · [x] M4 · [x] M5 · [x] M6 · [x] M7 · [x] M8 · [x] M9 · [x] M10 · [ ] M11
