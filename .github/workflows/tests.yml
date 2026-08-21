@@ -1,0 +1,48 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependencias
+        run: pip install pytest pytest-cov requests pytest-bdd playwright
+
+      - name: Instalar navegadores de Playwright
+        run: playwright install --with-deps chromium
+
+      # Cada módulo es un mini-proyecto independiente con sus propios imports,
+      # así que se ejecuta por separado (igual que en local: cd modulo-XX && pytest).
+      - name: Ejecutar los tests de cada módulo
+        run: |
+          fallos=0
+          for dir in curso-1/modulo-* curso-2/modulo-*; do
+            if ls "$dir"/test_*.py >/dev/null 2>&1; then
+              echo "::group::$dir"
+              if (cd "$dir" && python -m pytest -q); then
+                echo "OK  $dir"
+              else
+                echo "FAIL $dir"
+                fallos=$((fallos + 1))
+              fi
+              echo "::endgroup::"
+            else
+              echo "SKIP $dir (sin tests)"
+            fi
+          done
+          echo "--------------------------------"
+          if [ "$fallos" -gt 0 ]; then
+            echo "$fallos módulo(s) con tests fallando"
+            exit 1
+          fi
+          echo "Todos los módulos en verde"
