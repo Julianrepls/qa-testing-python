@@ -1,0 +1,19 @@
+# Dependencias para ejecutar todos los tests del repositorio.
+#   pip install -r requirements-dev.txt
+#   playwright install chromium
+
+pytest
+pytest-cov
+
+# Testing de clientes de API REST (curso-2/modulo-04, modulo-05)
+requests
+
+# Fixture 'page' para los tests E2E (curso-1/modulo-10, curso-2/modulo-08).
+# Instala tambien el paquete 'playwright' como dependencia.
+pytest-playwright
+
+# BDD con Gherkin (curso-2/modulo-10)
+pytest-bdd
+
+# Testing de rendimiento (curso-2/modulo-11)
+locust
